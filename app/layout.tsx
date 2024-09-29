@@ -1,3 +1,4 @@
+'use client'
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -5,7 +6,7 @@ import {
   ClerkProvider,
  } from '@clerk/nextjs'
 import { dark } from "@clerk/themes";
-
+import Provider from "./Provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,7 +19,7 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "LiveDocs",
   description: "Your-Go-to live docs is here",
 };
@@ -42,7 +43,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <Provider>{children}</Provider>
       </body>
     </html>
     </ClerkProvider>
